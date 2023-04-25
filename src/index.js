@@ -10,7 +10,7 @@ function displayPuzzle(arrayOfWordBlocks) {
   const wordBlocks = createWordBlocks(arrayOfWordBlocks);
 
   for (let i = 0; i < wordBlocks.length; i++) {
-    wordBoard.innerHTML += wordBlocks[i];
+    wordBoard.appendChild(wordBlocks[i]);
   }
 
   return wordBoard;
@@ -34,7 +34,7 @@ function createLetterBlocks(word) {
     const letterContainer = document.createElement("div");
     letterContainer.className = "letter-container";
     letterContainer.innerHTML = word[i];
-    wordBlock.innerHTML += letterContainer;
+    wordBlock.appendChild(letterContainer);
   }
   console.log(wordBlock);
   return wordBlock;
