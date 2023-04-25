@@ -16,7 +16,7 @@ class Puzzle {
     wordsArray.push(firstWord);
 
     for (let i = 0; i <= 4; i++) {
-      const newWord = this.getNextWord(
+      const newWord = this._getNextWord(
         this.usedWords[this.usedWords.length - 1]
       );
       this.usedWords.push(newWord);
@@ -28,12 +28,12 @@ class Puzzle {
     return wordsArray;
   };
 
-  getNextWord = (word) => {
+  _getNextWord = (word) => {
     const currentWord = wordBank.find((w) => w.word === word);
     const currentWordAfterArray = currentWord.after;
     //too avoid repetitiveness, we are going to ensure no word can repeat itself in the same puzzle.
     //we will achieve this by taking the list of words already used and filtering those out of the possible choices of the "after" array
-    const currentWordFilteredArray = this.filterWordArray(
+    const currentWordFilteredArray = this._filterWordArray(
       currentWordAfterArray
     );
     const randomValidIndex = Math.floor(
@@ -47,12 +47,12 @@ class Puzzle {
     return nextWord;
   };
 
-  filterWordArray = (arr) => {
+  _filterWordArray = (arr) => {
     let newArr = arr;
     for (let i; i < arr.length; i++) {
       const word = arr[i];
 
-      if (this.checkIfWordHasBeenUsed(word)) {
+      if (this._checkIfWordHasBeenUsed(word)) {
         const index = arr.indexOf(word);
         arr.splice(index, 1);
       }
@@ -61,7 +61,7 @@ class Puzzle {
     return newArr;
   };
 
-  checkIfWordHasBeenUsed = (word) => {
+  _checkIfWordHasBeenUsed = (word) => {
     const wordCheck = this.usedWords.find((w) => w.word === word);
 
     return wordCheck !== undefined ? true : false;
