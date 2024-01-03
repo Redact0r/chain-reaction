@@ -10,7 +10,7 @@ function displayPuzzle(arrayOfWordBlocks) {
   const wordBlocks = createWordBlocks(arrayOfWordBlocks);
 
   for (let i = 0; i < wordBlocks.length; i++) {
-    wordBoard.innerHTML += wordBlocks[i];
+    wordBoard.appendChild(wordBlocks[i]);
   }
 
   return wordBoard;
@@ -30,11 +30,12 @@ function createWordBlocks(arrayOfWords) {
 function createLetterBlocks(word) {
   let wordBlock = document.createElement("div");
   wordBlock.className = "word-container";
-  for (let i = 0; i < word.length; i++) {
+  //users shouldn't know how long a word is, so every word will appear as 12 blocks, with only the first letter revealed
+  for (let i = 0; i < 11; i++) {
     const letterContainer = document.createElement("div");
     letterContainer.className = "letter-container";
-    letterContainer.innerHTML = word[i];
-    wordBlock.innerHTML += letterContainer;
+    letterContainer.innerHTML = word[i] || "&nbsp;";
+    wordBlock.appendChild(letterContainer);
   }
   console.log(wordBlock);
   return wordBlock;
